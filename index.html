@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Surprise ❤️</title>
+    <style>
+        :root {
+            --pink: #ff4d6d;
+            --dark-pink: #c9184a;
+            --bg: #fff0f3;
+            --env-color: #f08080;
+            --env-dark: #cd5c5c;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* FLOWERS BACKGROUND */
+        .bg-flower {
+            position: fixed;
+            top: -100px;
+            font-size: 40px;
+            z-index: 1;
+            filter: drop-shadow(0 0 8px rgba(255,182,193,0.8));
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            width: 85%;
+            max-width: 400px;
+            padding: 40px 25px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(255, 77, 109, 0.3);
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            border: 2px solid white;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn { from { scale: 0.8; opacity: 0; } to { scale: 1; opacity: 1; } }
+
+        h1 { color: var(--pink); font-size: 1.8rem; margin-bottom: 20px; }
+        p { color: #555; line-height: 1.6; }
+
+        button { 
+            padding: 14px 28px; 
+            border-radius: 50px; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: 0.3s;
+        }
+
+        .yes-btn { background: var(--pink); color: white; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3); margin-top: 20px;}
+        #noBtn { background: #fbdae1; color: var(--pink); position: absolute; white-space: nowrap; transition: 0.1s ease-out; }
+        .btn-container { margin-top: 30px; height: 100px; position: relative; }
+
+        /* --- NEW POCKET ENVELOPE DESIGN --- */
+        .envelope-container {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            margin: 50px auto 20px;
+            perspective: 1000px;
+        }
+
+        /* The Main Pocket */
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--env-color);
+            border-radius: 5px;
+            z-index: 3;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Side Folds Effect */
+        .envelope-pocket::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 80px solid rgba(255,255,255,0.2);
+            z-index: 4;
+            border-radius: 0 0 5px 5px;
+        }
+
+        /* Top Flap */
+        .flap {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 80px solid var(--env-dark);
+            transform-origin: top;
+            transition: transform 0.4s ease;
+            z-index: 5;
+        }
+
+        /* The Actual Letter */
+        .letter-inside {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 180px;
+            height: 130px;
+            background: #fff;
+            padding: 15px;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.6s ease;
+            z-index: 2; /* Hidden behind pocket */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #444;
+            border: 1px solid #eee;
+            overflow: hidden; /* This hides any stray text */
+        }
+
+        /* OPEN STATE */
+        .envelope-container.open .flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-container.open .letter-inside {
+            transform: translateY(-100px);
+            z-index: 6; /* Pops up above everything */
+            height: 180px;
+        }
+
+        /* --- END NEW DESIGN --- */
+
+        .gift-box { font-size: 100px; cursor: pointer; animation: shake 1s infinite; display: inline-block; }
+        @keyframes shake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-5deg); } }
+        .revealed-flower { font-size: 110px; display: none; animation: bloom 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49); }
+        @keyframes bloom { 0% { scale: 0; } 100% { scale: 1; } }
+
+        .input-group { text-align: left; margin: 20px 0; }
+        label { color: var(--pink); font-weight: bold; display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; border: 2px solid #fbdae1; border-radius: 12px; margin-bottom: 15px; box-sizing: border-box; outline: none; }
+
+        .shayari-box {
+            background: #fff8f9;
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px dashed #ffb3c1;
+            font-style: italic;
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="page1">
+        <h1>  CHASMISH </h1>
+        <h2>Will you be my friend ? 💖</h2>
+        <div class="btn-container">
+            <button class="yes-btn" onclick="showPage(2)">YES! 💗</button>
+            <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No :(</button>
+        </div>
+    </div>
+
+    <div class="card hidden" id="page2">
+        <h1>Congratulations! 🎉</h1>
+        <p>I knew tu haa he bolegi Haha. 🌹🌺🌻</p>
+        <button class="yes-btn" onclick="showPage(3)">Open Note 💌</button>
+    </div>
+
+    <div class="card hidden" id="page3">
+        <h1> Tumhare liye 💌</h1>
+        <div class="envelope-container" id="env" onclick="this.classList.toggle('open')">
+            <div class="flap"></div>
+            <div class="letter-inside">
+                "Kajal, you are the most special 'Chasmish' in my life! Always stay the way you are. kya soch rhi ❤️"
+            </div>
+            <div class="envelope-pocket"></div>
+        </div>
+        <p>envelope को touch कर!</p>
+        <button class="yes-btn" onclick="showPage(4)">tumhare liye Gift 🎁</button>
+    </div>
+
+    <div class="card hidden" id="page4">
+        <h1 id="giftTitle">Box ko open kar 🎁</h1>
+        <div id="giftBox" class="gift-box" onclick="revealFlower()">🎁</div>
+        <div id="flowerBox" class="revealed-flower">💐</div>
+        <p id="giftMsg">box ko touch kr...</p>
+        <button id="nextBtn" class="yes-btn hidden" onclick="showPage(5)"> Ab Mere sawalo ka jabab de? 🤔</button>
+    </div>
+
+    <div class="card hidden" id="page5">
+        <h1>Batao Batao... 🤔</h1>
+        <div class="input-group">
+            <label>1. Tumhe khana kya pasand hai?</label>
+            <input type="text" placeholder="Pizza? Pasta? Or me?">
+            <label>2. Tu paida khubsurat hui thee ya ab ho gyi ?</label>
+            <input type="text"placeholder="?">
+            <label>3. Tu itni khadoos kab se OR kyun ho ?</label>
+            <input type="text" placeholder="Sach batao! 😂">
+            <label>4.Tu apni photo kb bhej rhi ?</label>
+            <input type="text" placeholder ="Nhi bhejungi OR Bhej rhi hu">
+        </div>
+        <button class="yes-btn" onclick="showPage(6); startHearts();">Finish ✨</button>
+    </div>
+
+    <div class="card hidden" id="page6">
+        <h1>Dosti ❤️</h1>
+        <div class="shayari-box">
+            "मुझको जन्नत की तमन्ना है मगर शर्त ये है.मेरे हमराह, मेरे दोस्त भी सार जाएं!! <br><br> 
+
+            "तुमने सबको दोस्त माना पर किसी ने तुम्हें दोस्त माना क्या? तुमने सबको दोस्त माना पर किसी ने तुमको दोस्त माना क्या? तुमने उठाए नखरे सबके पर जब तुम रूठे किसी ने मनाया क्या<br><br>
+            "कहते हैं ना रोशनी चाँद से होती है सितारों से नहीं Dosti एक से होती है हज़ारों से नहीं!!"<br><br>
+            "तुमने सबको दोस्त माना पर किसी ने तुम्हें दोस्त माना क्या? तुमने सबको दोस्त माना पर किसी ने तुमको दोस्त माना क्या? तुमने उठाए नखरे सबके पर जब तुम रूठे किसी ने मनाया क्या?...<br>
+            THE END Vikram."<br><br>
+            <strong style="color: var(--pink);">— Gulzar Sahab</strong>
+        </div>
+        <p style="margin-top:20px; font-weight:bold; color:var(--pink);"> khadoos chasmish ✨</p>
+    </div>
+
+    <script>
+        const flowers = ['🌹', '🌺', '🌻', '🌸', '🌷'];
+        function createBG() {
+            for (let i = 0; i < 20; i++) {
+                const f = document.createElement('div');
+                f.className = 'bg-flower';
+                f.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+                f.style.left = Math.random() * 100 + 'vw';
+                f.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                f.style.animationDelay = (Math.random() * 5) + 's';
+                document.body.appendChild(f);
+            }
+        }
+        createBG();
+
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 20);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function showPage(num) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('page' + num).classList.remove('hidden');
+        }
+
+        function revealFlower() {
+            document.getElementById('giftBox').classList.add('hidden');
+            document.getElementById('flowerBox').style.display = 'block';
+            document.getElementById('giftTitle').innerText = "For You! 💐";
+            document.getElementById('giftMsg').innerHTML = "<b>Khadoos ke liye phool! खुश</b>";
+            document.getElementById('nextBtn').classList.remove('hidden');
+        }
+
+        function startHearts() {
+            for(let i=0; i<30; i++) {
+                setTimeout(() => {
+                    const h = document.createElement('div');
+                    h.innerText = '❤️';
+                    h.style.position = 'fixed';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.top = '-20px';
+                    h.style.zIndex = '1000';
+                    document.body.appendChild(h);
+                    h.animate([{transform: 'translateY(0)'}, {transform: `translateY(${window.innerHeight}px)`}], {duration: 3000});
+                    setTimeout(() => h.remove(), 3000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
