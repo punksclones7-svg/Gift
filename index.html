@@ -174,8 +174,8 @@
 <body>
 
     <div class="card" id="page1">
-        <h1>  CHASMISH </h1>
-        <h2>Will you be my friend ? 💖</h2>
+        <h1>  CHASMISH👓 </h1>
+        <h2>Will you be my friend ? 🌺🤝</h2>
         <div class="btn-container">
             <button class="yes-btn" onclick="showPage(2)">YES! 💗</button>
             <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No :(</button>
@@ -184,7 +184,7 @@
 
     <div class="card hidden" id="page2">
         <h1>Congratulations! 🎉</h1>
-        <p>I knew tu haa he bolegi Haha. 🌹🌺🌻</p>
+        <p>I knew tu haa he bolegi Haha😂😃. 🌹🌺🌻</p>
         <button class="yes-btn" onclick="showPage(3)">Open Note 💌</button>
     </div>
 
@@ -193,7 +193,7 @@
         <div class="envelope-container" id="env" onclick="this.classList.toggle('open')">
             <div class="flap"></div>
             <div class="letter-inside">
-                "Kajal, you are the most special 'Chasmish' in my life! Always stay the way you are. kya soch rhi ❤️"
+                "Kajal, you are the most special 'Chasmish' in my life! Always stay the way you are. कभी कभी मेरा भी बात मान लिया कर 🌹❤️"
             </div>
             <div class="envelope-pocket"></div>
         </div>
@@ -204,7 +204,7 @@
     <div class="card hidden" id="page4">
         <h1 id="giftTitle">Box ko open kar 🎁</h1>
         <div id="giftBox" class="gift-box" onclick="revealFlower()">🎁</div>
-        <div id="flowerBox" class="revealed-flower">💐</div>
+        <div id="flowerBox" class="revealed-flower">🌺🌸🌻💐</div>
         <p id="giftMsg">box ko touch kr...</p>
         <button id="nextBtn" class="yes-btn hidden" onclick="showPage(5)"> Ab Mere sawalo ka jabab de? 🤔</button>
     </div>
@@ -213,16 +213,16 @@
         <h1>Batao Batao... 🤔</h1>
         <form id="kajalForm" action="https://formspree.io/f/xkozaydp" method="POST">
             <div class="input-group">
-                <label>1. Tumhe khana kya pasand hai?</label>
+                <label>1. Tumhe khane me kya pasand hai 🤤?</label>
                 <input type="text" name="Food" placeholder="Pizza? Pasta? Or me?" required>
                 
-                <label>2. Tu paida khubsurat hui thee ya ab ho gyi ?</label>
+                <label>2. Tu paida khubsurat hui thee ya ab ho gyi 👗🥻🫅 ?</label>
                 <input type="text" name="Beauty_Type" placeholder="?" required>
                 
-                <label>3. Tu itni khadoos kab se OR kyun ho ?</label>
-                <input type="text" name="Khadoos_Reason" placeholder="Sach batao! 😂" required>
+                <label>3. Tu itni khadoos kab se OR kyun ho 😏?</label>
+                <input type="text" name="Khadoos_Reason" placeholder="Sach batao! 👀😂" required>
                 
-                <label>4. Tu apni photo kb bhej rhi ?</label>
+                <label>4. Tu apni photo kb bhej rhi 📸?</label>
                 <input type="text" name="Photo_Plan" placeholder ="Nhi bhejungi OR turant Bhej rhi hu" required>
             </div>
             <button type="button" id="submitBtn" class="yes-btn" onclick="sendData()">Finish ✨</button>
@@ -244,7 +244,7 @@
     </div>
 
     <script>
-        const flowers = ['🌹', '🌺', '🌻', '🌸', '🌷'];
+        const flowers = ['🌹', '🌺', '🌻', '🌸', '🌷', '🍁', '🍂', '☃️'];
         function createBG() {
             for (let i = 0; i < 20; i++) {
                 const f = document.createElement('div');
@@ -275,7 +275,7 @@
         function revealFlower() {
             document.getElementById('giftBox').classList.add('hidden');
             document.getElementById('flowerBox').style.display = 'block';
-            document.getElementById('giftTitle').innerText = "For You! 💐";
+            document.getElementById('giftTitle').innerText = "For You! 🪴💐";
             document.getElementById('giftMsg').innerHTML = "<b>Khadoos ke liye phool! खुश</b>";
             document.getElementById('nextBtn').classList.remove('hidden');
         }
